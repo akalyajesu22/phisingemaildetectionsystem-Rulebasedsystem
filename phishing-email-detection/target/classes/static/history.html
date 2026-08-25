@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History &mdash; Phishing Email Detection System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-mark">&#9673;</span>
+        <span class="brand-text">Phishing<strong>Guard</strong></span>
+    </div>
+    <nav class="navlinks">
+        <a href="index.html">Home</a>
+        <a href="index.html#analyze">Analyze Email</a>
+        <a href="history.html" class="active">History</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero hero-compact">
+        <p class="eyebrow">Analysis Log</p>
+        <h1>Analysis History</h1>
+        <p class="subtitle">Every email you've analyzed, stored locally in SQLite.</p>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header history-header">
+            <div>
+                <h2>All Analyzed Emails</h2>
+                <p>Click a row to view full details, or delete entries you no longer need.</p>
+            </div>
+            <button class="btn btn-ghost" id="refreshBtn">Refresh</button>
+        </div>
+
+        <div class="table-wrap">
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Sender</th>
+                        <th>Subject</th>
+                        <th>Risk Score</th>
+                        <th>Classification</th>
+                        <th>Analyzed Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="historyBody">
+                    <tr><td colspan="7" class="empty-row">Loading history...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <div class="toast" id="toast"></div>
+</main>
+
+<!-- Details Modal -->
+<div class="modal-overlay hidden" id="modalOverlay">
+    <div class="modal">
+        <button class="modal-close" id="modalClose">&times;</button>
+        <h2>Analysis Details</h2>
+        <div id="modalBody" class="modal-body"></div>
+    </div>
+</div>
+
+<footer>
+    <p>PhishingGuard &mdash; Rule-Based Detection Engine. No AI/ML. No external calls. Built with Java &amp; Spring Boot.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

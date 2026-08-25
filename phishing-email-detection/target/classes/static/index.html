@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phishing Email Detection System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scanline"></div>
+
+<header class="topbar">
+    <div class="brand">
+        <span class="brand-mark">&#9673;</span>
+        <span class="brand-text">Phishing<strong>Guard</strong></span>
+    </div>
+    <nav class="navlinks">
+        <a href="index.html" class="active">Home</a>
+        <a href="index.html#analyze">Analyze Email</a>
+        <a href="history.html">History</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero">
+        <p class="eyebrow">Rule-Based Email Security Analysis</p>
+        <h1>Phishing Email Detection System</h1>
+        <p class="subtitle">Detect suspicious emails using rule-based security analysis.</p>
+    </section>
+
+    <section class="stats-grid" id="statsGrid">
+        <div class="stat-card" data-tone="neutral">
+            <span class="stat-label">Total Analyzed</span>
+            <span class="stat-value" id="statTotal">0</span>
+        </div>
+        <div class="stat-card" data-tone="safe">
+            <span class="stat-label">Safe</span>
+            <span class="stat-value" id="statSafe">0</span>
+        </div>
+        <div class="stat-card" data-tone="suspicious">
+            <span class="stat-label">Suspicious</span>
+            <span class="stat-value" id="statSuspicious">0</span>
+        </div>
+        <div class="stat-card" data-tone="phishing">
+            <span class="stat-label">Phishing</span>
+            <span class="stat-value" id="statPhishing">0</span>
+        </div>
+    </section>
+
+    <section class="panel" id="analyze">
+        <div class="panel-header">
+            <h2>Analyze Email</h2>
+            <p>Paste in the sender, subject and body — the rule engine does the rest. No data leaves this server.</p>
+        </div>
+
+        <form id="analyzeForm" class="form-grid" novalidate>
+            <div class="field">
+                <label for="senderEmail">Sender Email</label>
+                <input type="text" id="senderEmail" name="senderEmail" placeholder="support@example.com" autocomplete="off">
+                <span class="field-error" id="err-senderEmail"></span>
+            </div>
+
+            <div class="field">
+                <label for="subject">Email Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Urgent: Verify Your Account" autocomplete="off">
+                <span class="field-error" id="err-subject"></span>
+            </div>
+
+            <div class="field field-wide">
+                <label for="emailBody">Email Body</label>
+                <textarea id="emailBody" name="emailBody" rows="7" placeholder="Paste the full email content here..."></textarea>
+                <span class="field-error" id="err-emailBody"></span>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="analyzeBtn">Analyze Email</button>
+                <button type="button" class="btn btn-ghost" id="clearBtn">Clear</button>
+            </div>
+
+            <div class="sample-actions">
+                <span>Try a sample:</span>
+                <button type="button" class="chip chip-safe" data-sample="safe">Safe</button>
+                <button type="button" class="chip chip-suspicious" data-sample="suspicious">Suspicious</button>
+                <button type="button" class="chip chip-phishing" data-sample="phishing">Phishing</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="panel result-panel hidden" id="resultPanel">
+        <div class="result-header">
+            <h2>Analysis Result</h2>
+            <span class="result-badge" id="resultBadge">—</span>
+        </div>
+
+        <div class="result-body">
+            <div class="score-block">
+                <div class="gauge-wrap">
+                    <svg viewBox="0 0 120 120" class="gauge">
+                        <circle cx="60" cy="60" r="52" class="gauge-track"></circle>
+                        <circle cx="60" cy="60" r="52" class="gauge-fill" id="gaugeFill"></circle>
+                    </svg>
+                    <div class="gauge-center">
+                        <span id="scoreValue">0</span>
+                        <small>/ 100</small>
+                    </div>
+                </div>
+                <p class="explanation" id="explanationText"></p>
+            </div>
+
+            <div class="indicators-block">
+                <h3>Detected Indicators</h3>
+                <ul id="indicatorsList" class="indicators-list"></ul>
+            </div>
+        </div>
+
+        <p class="recommendation" id="recommendationText"></p>
+    </section>
+
+    <div class="toast" id="toast"></div>
+</main>
+
+<footer>
+    <p>PhishingGuard &mdash; Rule-Based Detection Engine. No AI/ML. No external calls. Built with Java &amp; Spring Boot.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
